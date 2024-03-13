@@ -20,7 +20,7 @@ class BumperMonitorNode(Node):
     def check_collision(self):
         if self.ser.in_waiting > 0:
             line = self.ser.readline().decode('utf-8').rstrip()
-            self.get_logger().info(f'Received: {line}')
+            # self.get_logger().info(f'Received: {line}')
             try:
                 value = int(line)
                 if value > self.collision_threshold and value != self.last_collision_level:
