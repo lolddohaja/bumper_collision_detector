@@ -9,7 +9,8 @@ def generate_launch_description():
             name='bumper_monitor_node',
             parameters=[
                 {'collision_value': 100},
-                {'end_collision_value': -50}
+                {'end_collision_value': -50},
+                {'end_positive_count': 10}
             ]
         )
     ])
