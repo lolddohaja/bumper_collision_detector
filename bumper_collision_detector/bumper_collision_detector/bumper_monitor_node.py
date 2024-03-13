@@ -10,7 +10,7 @@ class BumperMonitorNode(Node):
         super().__init__('bumper_monitor_node')
         # 파라미터로부터 임계값을 가져옵니다.
         self.collision_threshold = self.declare_parameter('collision_value', 100).get_parameter_value().integer_value
-        self.end_collision_threshold = self.declare_parameter('end_collision_value', -50).get_parameter_value().integer_value
+        self.end_collision_threshold = self.declare_parameter('end_collision_value', -80).get_parameter_value().integer_value
         self.end_positive_count = self.declare_parameter('end_positive_count', 10).get_parameter_value().integer_value
 
         self.publisher_ = self.create_publisher(String, 'collision', 10)
