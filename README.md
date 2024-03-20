@@ -10,7 +10,7 @@ docker build -t zetabank/outside:iron-bumper-v0.0.1 -f Dockerfile .
 
 ```bash
 # ros2 launch bumper_collision_detector bumper_monitor.launch.py
-docker run --rm -it --device=/dev/ttyUSB0:/dev/ttyUSB0 -e ALSA_CARD=1 zetabank/outside:iron-bumper-v0.0.1 ros2 launch bumper_collision_detector bumper_monitor.launch.py
+docker run --rm -it --device=/dev/ttyUSB0:/dev/ttyUSB0 zetabank/outside:iron-bumper-v0.0.1 ros2 launch bumper_collision_detector bumper_monitor.launch.py
 ```
 
 ## Bumper Collision Detector Node Parameters
