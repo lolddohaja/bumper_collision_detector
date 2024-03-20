@@ -12,14 +12,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-dev-tools \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /root
+WORKDIR /root/ros2_ws
 
-RUN mkdir -p ~/ros2_ws/src \
-    && cd ~/ros2_ws/src \ 
-    && git clone -b iron_docker https://github.com/lolddohaja/bumper_collision_detector.git \ 
-    && cd ~/ros2_ws \ 
-    && . /opt/ros/$ROS_DISTRO/setup.sh \
-    && colcon build
+
+COPY bumper_collision_detector src/bumper_collision_detector
+
+RUN rosdep update --rosdistro $ROS_DISTRO
+
+RUN apt update && rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y
+
+RUN . /opt/ros/$ROS_DISTRO/setup.sh \
+  && colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
+
 
 RUN sed -i '$isource "/root/ros2_ws/install/setup.bash"' /ros_entrypoint.sh
 

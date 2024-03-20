@@ -1,16 +1,18 @@
 # bumper_collision_detector
 
-```bash
-sudo apt install python3-serial
-```
+default ROS2 iron check
 
 ```bash
-colcon build --packages-select bumper_collision_detector
+docker build -t zetabank/outside:iron-bumper-v0.0.1 -f Dockerfile .
 ```
 
+사용법
+
 ```bash
-ros2 launch bumper_collision_detector bumper_monitor.launch.py
+# ros2 launch bumper_collision_detector bumper_monitor.launch.py
+docker run --rm -it --device=/dev/ttyUSB0:/dev/ttyUSB0 -e ALSA_CARD=1 zetabank/outside:iron-bumper-v0.0.1 ros2 launch bumper_collision_detector bumper_monitor.launch.py
 ```
+
 ## Bumper Collision Detector Node Parameters
 
 The Bumper Collision Detector Node utilizes several parameters to customize its behavior according to the specific needs of the application. Below is a description of these parameters:
